@@ -1,6 +1,6 @@
 import hid
 from .constants import JOYCON_VENDOR_ID, JOYCON_PRODUCT_IDS
-from .constants import JOYCON_L_PRODUCT_ID, JOYCON_R_PRODUCT_ID
+from .constants import JOYCON_L_PRODUCT_ID, JOYCON_R_PRODUCT_ID, JOYCON_PRO_PRODUCT_ID
 
 
 def get_device_ids(debug=False):
@@ -42,12 +42,14 @@ def get_ids_of_type(lr, **kw):
     """
     returns a list of tuples like `(vendor_id, product_id, serial_number)`
 
-    arg: lr : str : put `R` or `L`
+    arg: lr : str : put `R` or `L` or `PRO`
     """
     if lr.lower() == "l":
         product_id = JOYCON_L_PRODUCT_ID
-    else:
+    elif lr.lower() == "r":
         product_id = JOYCON_R_PRODUCT_ID
+    else:
+        product_id = JOYCON_PRO_PRODUCT_ID
     return [i for i in get_device_ids(**kw) if i[1] == product_id]
 
 
@@ -59,6 +61,11 @@ def get_R_ids(**kw):
 def get_L_ids(**kw):
     """returns a list of tuple like `(vendor_id, product_id, serial_number)`"""
     return get_ids_of_type("L", **kw)
+
+    
+def get_PRO_ids(**kw):
+    """returns a list of tuple like `(vendor_id, product_id, serial_number)`"""
+    return get_ids_of_type("PRO", **kw)
 
 
 def get_R_id(**kw):
@@ -72,6 +79,14 @@ def get_R_id(**kw):
 def get_L_id(**kw):
     """returns a tuple like `(vendor_id, product_id, serial_number)`"""
     ids = get_L_ids(**kw)
+    if not ids:
+        return (None, None, None)
+    return ids[0]
+
+
+def get_PRO_id(**kw):
+    """returns a tuple like `(vendor_id, product_id, serial_number)`"""
+    ids = get_PRO_ids(**kw)
     if not ids:
         return (None, None, None)
     return ids[0]
