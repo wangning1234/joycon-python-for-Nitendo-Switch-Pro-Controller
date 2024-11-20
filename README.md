@@ -3,7 +3,7 @@
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/joycon-python)
 ![PyPI - Implementation](https://img.shields.io/pypi/implementation/joycon-python)
 
-Python driver for Nintendo Switch Joy-Con
+Python driver for Nintendo Switch Joy-Con and Pro Controller(get_status repaired)
 
 We are referring to [dekuNukem/Nintendo_Switch_Reverse_Engineering](https://github.com/dekuNukem/Nintendo_Switch_Reverse_Engineering)
 
